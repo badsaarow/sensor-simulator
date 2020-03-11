@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edwork Sensor simulator</title>
+    <style>
+        table { border-collapse: collapse; }
+        table, th, td { border: 1px solid black; }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+
+<body>
+  <div id="app"><div v-cloak>
+    <div id="controls">
+      <button v-show="!connected" @click="openPort">Open Port</button><input id="port" type="text" value="COM7">
+      <button v-show="connected" @click="closePort">Close Port</button>
+      <button v-show="connected" @click="sendEvent">Start Sending</button>
+      <button v-show="connected" id="btn-reset" @mousedown="pressed_button='reset'" @mouseup="pressed_button=null">RESET</button>
+      <button v-show="connected" id="btn-pairing" @mousedown="pressed_button='pairing'" @mouseup="pressed_button=null">PAIRING</button>
+      <span id="pressed_button">{{pressed_button}}</span>
+      <br/>
+      <table>
+        <tr>
+          <td>0.power: </td><td><input name="sensor" type="number" min="0" max="1" value="1"></td>
+          <td>1.wifi_strength: </td><td><input name="sensor"  type="number" min="-126" max="0" value="-95"></td>
+          <td>2.temperature: </td><td><input name="sensor"  type="number" min="-126" max="127" value="1"></td>
+        </tr>
+        <tr>
+          <td>3.humidity: </td><td><input name="sensor"  type="number" min="0" max="100" value="1"></td>
+          <td>4.co2_concentration: </td><td><input name="sensor"  type="number" min="0" max="100" value="1"></td>
+          <td>5.voc: </td><td><input name="sensor" type="number" min="0" max="127" value="1"></td>
+        </tr>
+        <tr>
+          <td>6.fine_dust: </td><td><input name="sensor" type="number" min="0" max="127" value="1"></td>
+          <td>7.fine_dust2: </td><td><input name="sensor" type="number" min="0" max="127" value="1"></td>
+          <td>8.fine_dust3: </td><td><input name="sensor" type="number" min="0" max="127" value="1"></td>
+        </tr>
+        <tr>
+          <td>9.amount_of_electricity_used: </td><td><input name="sensor" type="number" min="0" max="127" value="1"></td>
+          <td>10.airflow: </td><td><input name="sensor" type="number" min="1" max="8" value="1"></td>
+          <td>11.power_light1: </td><td><input name="sensor" type="number" min="0" max="1" value="1"></td>
+        </tr>
+        <tr>
+          <td>12.power_light2: </td><td><input name="sensor" type="number" min="0" max="1" value="1"></td>
+          <td>13.power_light3: </td><td><input name="sensor" type="number" min="0" max="1" value="1"></td>
+          <td>14.power_light4: </td><td><input name="sensor" type="number" min="0" max="1" value="1"></td>
+        </tr>
+        <tr>
+          <td>15.power_light5: </td><td><input name="sensor" type="number" min="0" max="1" value="1"></td>
+          <td>16.power_light6: </td><td><input name="sensor" type="number" min="0" max="1" value="1"></td>
+          <td>17.power_light_all: </td><td><input name="sensor" type="number" min="0" max="1" value="1"></td>
+        </tr>
+        <tr>
+          <td>18.dimming: </td><td><input name="sensor" type="number" min="0" max="100" value="1"></td>
+          <td>19.led_bright: </td><td><input name="sensor" type="number" min="0" max="100" value="1"></td>
+          <td>20.colors: </td><td><input name="sensor" type="number" min="0" max="100" value="1"></td>
+        </tr>
+        <tr>
+          <td>21.direction: </td><td><input name="sensor" type="number" min="0" max="127" value="1"></td>
+          <td>22.speed: </td><td><input name="sensor" type="number" min="0" max="127" value="1"></td>
+          <td>23.canvas: </td><td><input name="sensor" type="number" min="0" max="127" value="1"></td>
+        </tr>
+        <tr>
+          <td>24.distance: </td><td><input name="sensor" type="number" min="0" max="127" value="1"></td>
+          <td>25.height: </td><td><input name="sensor" type="number" min="-126" max="127" value="1"></td>
+          <td>26.intensity_of_illumination: </td><td><input name="sensor" type="number" min="-126" max="127" value="1"></td>
+        </tr>
+        <tr>
+          <td>27.motion_sensor: </td><td><input name="sensor" type="number" min="0" max="1" value="1"></td>
+          <td>28.open_sense: </td><td><input name="sensor" type="number" min="1" max="2" value="1"></td>
+          <td></td><td></td>
+        </tr>
+      </table>
+    </div>
+    <br/>
+    <div id="error"></div>
+    <div id="ports"></div>
+    <div id="recv">
+      <ul>
+        <li v-for="recv in recvs">{{recv.toString()}}</li>
+      </ul>
+    </div>
+  </div></div>
+</body>
+
+<script src="./renderer.js"></script>
+
+</html>
