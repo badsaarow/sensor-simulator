@@ -1,7 +1,7 @@
 {
   "name": "sensor-simulator",
   "version": "1.0.1",
-  "description": "A minimal Electron application with node serialport",
+  "description": "Edworks Arduino Sensor Simulator",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -9,17 +9,6 @@
     "dist": "electron-builder",
     "install": "electron-rebuild"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/johnny-five-io/electron-serialport.git"
-  },
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
-  ],
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
@@ -31,9 +20,5 @@
     "escpos": "github:badsaarow/node-escpos#arduino",
     "serialport": "*",
     "tableify": "^1.1.0"
-  },
-  "bugs": {
-    "url": "https://github.com/johnny-five-io/electron-serialport/issues"
-  },
-  "homepage": "https://github.com/johnny-five-io/electron-serialport#readme"
+  }
 }

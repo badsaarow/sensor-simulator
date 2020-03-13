@@ -11,6 +11,7 @@ const app = new Vue({
   data() {
     const vm = this
     return {
+     portInfo: null,
      connected: false,
      arduino: null,
      sensorData: null,
@@ -25,15 +26,10 @@ const app = new Vue({
     showPorts() {
       SerialPort.list()
       .then((ports) => {
-        console.log('ports', ports);
-      
-        document.getElementById('error').textContent = ''
-        if (ports.length === 0) {
-          document.getElementById('error').textContent = 'No ports discovered'
-        }
-      
-        tableHTML = tableify(ports)
-        document.getElementById('ports').innerHTML = tableHTML
+        console.log('ports', ports)
+        this.portInfo = ports.reduce((prev, curr, i) => {
+          return (i === 1 ? `${curr.path}[${curr.manufacturer}]` : prev) + `,${curr.path}[${curr.manufacturer}]`
+        })
       })
       .catch((err) => {
         document.getElementById('error').textContent = err.message
