@@ -28,7 +28,7 @@ const app = new Vue({
       .then((ports) => {
         console.log('ports', ports)
         this.portInfo = ports.reduce((prev, curr, i) => {
-          return (i === 1 ? `${curr.path}[${curr.manufacturer}]` : prev) + `,${curr.path}[${curr.manufacturer}]`
+          return (i === 1 ? '' : `${prev},`) + `${curr.path}[${curr.manufacturer}]`
         })
       })
       .catch((err) => {
@@ -144,6 +144,7 @@ const app = new Vue({
         console.log('port opened')
         this.connected = true
         this.arduino.flush()
+        this.sendEvent()
       })
     
       this.arduino.on('message', (data) => {

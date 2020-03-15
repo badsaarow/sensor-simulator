@@ -17,7 +17,6 @@
     <div id="controls">
       <button v-show="!connected" @click="openPort">Open Port</button><input id="port" type="text" value="COM7">
       <button v-show="connected" @click="closePort">Close Port</button>
-      <button v-show="connected" @click="sendEvent">Start Sending</button>
       <button v-show="connected" id="btn-reset" @mousedown="pressed_button='reset'" @mouseup="pressed_button=null">RESET</button>
       <button v-show="connected" id="btn-pairing" @mousedown="pressed_button='pairing'" @mouseup="pressed_button=null">PAIRING</button>
       <span id="pressed_button">{{pressed_button}}</span>
