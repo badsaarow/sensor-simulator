@@ -11,7 +11,8 @@ const app = new Vue({
   data() {
     const vm = this
     return {
-     portInfo: null,
+     port: null,
+     ports: [],
      connected: false,
      arduino: null,
      sensorData: null,
@@ -27,9 +28,7 @@ const app = new Vue({
       SerialPort.list()
       .then((ports) => {
         console.log('ports', ports)
-        this.portInfo = ports.reduce((prev, curr, i) => {
-          return (i === 1 ? '' : `${prev},`) + `${curr.path}[${curr.manufacturer}]`
-        })
+        this.ports = ports.map(v => ({ value: v.path, text: `${v.path}-${v.manufacturer}`}))
       })
       .catch((err) => {
         document.getElementById('error').textContent = err.message
@@ -84,20 +83,13 @@ const app = new Vue({
             this.sensorData += hexStr
           }
         }
-        /*
-        this.sensorData = x.map((v, i) => `${i}:${v.value}`).reduce((pre, curr) => {
-          if (!pre) return `AT+SKSTAT=${curr}`
-          return `${pre},${curr}`
-        })
-        */
-        console.log('send sensorData', this.sensorData)
     
         this.arduino.print(this.sensorData + '\n')
     
         this.arduino.flush()
-        setTimeout(repeatSender, 1000)
+        setTimeout(repeatSender, 1500)
       }
-      setTimeout(repeatSender, 1000)
+      setTimeout(repeatSender, 7000)
     
       this.arduino.flush()
     },
@@ -126,9 +118,8 @@ const app = new Vue({
       if (this.arduino) return
       console.log('openPort')
       this.recvs.length = 0
-    
-      const portName = document.getElementById("port").value
-      const port = new escpos.Serial(portName, {
+
+      const port = new escpos.Serial(this.port, {
         baudRate: 9600,
         autoOpen: false
       });

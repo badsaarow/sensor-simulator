@@ -4,7 +4,7 @@
   "description": "Edworks Arduino Sensor Simulator",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
+    "start": "electron -i .",
     "build:win64": "build --win --x64",
     "dist": "electron-builder",
     "install": "electron-rebuild"
