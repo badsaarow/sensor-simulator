@@ -12,13 +12,13 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^5.0.5",
+    "electron": "^13.1.9",
     "electron-builder": "^22.4.0",
-    "electron-rebuild": "^1.10.1"
+    "electron-rebuild": "^3.1.1"
   },
   "dependencies": {
-    "escpos": "github:badsaarow/node-escpos#arduino",
-    "serialport": "8.0.8",
+    "escpos": "^3.0.0-alpha.6",
+    "serialport": "^9.2.0",
     "tableify": "^1.1.0"
   }
 }
