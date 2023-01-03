@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "escpos": "^3.0.0-alpha.6",
-    "serialport": "^10.3.0",
+    "serialport": "^10.5.0",
     "tableify": "^1.1.1"
   }
 }
