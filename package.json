@@ -12,7 +12,7 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^22.3.21",
+    "electron": "^22.3.24",
     "electron-builder": "^23.5.0",
     "electron-rebuild": "^3.1.1"
   },
